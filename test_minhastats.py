@@ -7,3 +7,5 @@ TOLERANCIA = 1e-9
 def test_media():
     assert abs(minhastats.media(DADOS)- statistics.mean(DADOS)) < TOLERANCIA
 
+def test_mediana():
+     assert abs(minhastats.mediana(DADOS)-statistics.median(DADOS)) < TOLERANCIA
