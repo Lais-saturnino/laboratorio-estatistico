@@ -16,3 +16,18 @@ def mediana(dados):
         return ordenados[meio]
     else:
          return (ordenados [meio -1] + ordenados[meio]) / 2
+
+def amplitude(dados):
+    return max(dados) - min(dados)
+
+
+def moda(dados):
+    contagem = {}
+    for valor in dados:
+        if valor in contagem:
+            contagem[valor] = contagem[valor] + 1
+        else:
+            contagem[valor] = 1
+
+            return max(contagem, key=contagem.get)
+            
