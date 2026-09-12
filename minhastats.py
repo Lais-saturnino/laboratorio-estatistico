@@ -44,3 +44,11 @@ def variancia(dados , amostral=True):
         return soma_quadrados / (len(dados) -1)
     else:
         return soma_quadrados / len(dados)
+
+
+def desvio_padrao(dados, amostral=True):
+    return variancia(dados, amostral) ** 0.5
+
+
+def coeficiente_variacao(dados):
+    return desvio_padrao(dados) / media(dados) * 100

@@ -30,4 +30,19 @@ def test_variancia_populacional():
     assert abs(minhastats.variancia(DADOS, amostral=False) - statistics.pvariance(DADOS)) < TOLERANCIA
 
 
- 
+def test_desvio_padrao_amostral():
+    assert abs(minhastats.desvio_padrao(DADOS) - statistics.stdev(DADOS)) < TOLERANCIA
+    
+
+def test_desvio_padrao_populacional():
+    assert abs(minhastats.desvio_padrao(DADOS, amostral=False) - statistics.pstdev(DADOS)) < TOLERANCIA
+
+
+# O STATISTICS E O NUMPY NAO TEM FUNCAO PRONTA DE COEFICIENTE DE VARIACAO.
+# POR ISSO A REFERENCIA E MONTADA COM STDEV E MEAN DAS PROPRIAS BIBLIOTECAS.
+
+    
+
+def test_coeficiente_variacao():
+    esperado = statistics.stdev(DADOS) / statistics.mean(DADOS) * 100
+    assert abs(minhastats.coeficiente_variacao(DADOS) - esperado) < TOLERANCIA
