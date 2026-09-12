@@ -20,3 +20,14 @@ DADOS_MODA =[7,8,7,9,10,7,8]
 
 def test_moda():
     assert minhastats.moda(DADOS_MODA) == statistics.mode(DADOS_MODA)
+
+    
+def test_variancia_amostral():
+    assert abs(minhastats.variancia(DADOS) - statistics.variance(DADOS)) < TOLERANCIA
+
+
+def test_variancia_populacional():
+    assert abs(minhastats.variancia(DADOS, amostral=False) - statistics.pvariance(DADOS)) < TOLERANCIA
+
+
+ 

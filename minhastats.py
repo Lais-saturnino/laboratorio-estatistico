@@ -31,3 +31,16 @@ def moda(dados):
 
             return max(contagem, key=contagem.get)
             
+
+
+def variancia(dados , amostral=True):
+    m = media(dados)
+    soma_quadrados = 0
+    for valor in dados:
+        soma_quadrados = soma_quadrados + (valor - m) **2
+
+    
+    if amostral:
+        return soma_quadrados / (len(dados) -1)
+    else:
+        return soma_quadrados / len(dados)
