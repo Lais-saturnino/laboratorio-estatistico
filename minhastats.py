@@ -29,7 +29,7 @@ def moda(dados):
         else:
             contagem[valor] = 1
 
-            return max(contagem, key=contagem.get)
+    return max(contagem, key=contagem.get)
             
 
 

@@ -46,3 +46,8 @@ def test_desvio_padrao_populacional():
 def test_coeficiente_variacao():
     esperado = statistics.stdev(DADOS) / statistics.mean(DADOS) * 100
     assert abs(minhastats.coeficiente_variacao(DADOS) - esperado) < TOLERANCIA
+
+
+
+def test_moda_quando_nao_e_o_primeiro():
+    assert minhastats.moda([1, 2, 2, 2]) == 2
