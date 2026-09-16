@@ -1,45 +1,84 @@
-"""
-test_minhastats.py
-Testes automatizados: comparam MINHAS funcoes com as bibliotecas prontas.
-
-Se der tudo "passed", minhas formulas estao certas.
-Rodar com:  pytest -v
-"""
-
 import statistics
-import numpy as np
-
+import numpy
 import minhastats
 
-# Uma listinha de numeros para testar
 DADOS = [2.0, 3.0, 5.0, 5.5, 6.0, 6.8, 5.0, 5.5, 5.2, 6.0]
-
-TOLERANCIA = 1e-9   # margem de erro aceita (0,000000001)
-
+TOLERANCIA = 1e-9
 
 def test_media():
-    assert abs(minhastats.media(DADOS) - statistics.mean(DADOS)) < TOLERANCIA
-
+    assert abs(minhastats.media(DADOS)- statistics.mean(DADOS)) < TOLERANCIA
 
 def test_mediana():
-    assert abs(minhastats.mediana(DADOS) - statistics.median(DADOS)) < TOLERANCIA
+     assert abs(minhastats.mediana(DADOS)-statistics.median(DADOS)) < TOLERANCIA
 
 
-def test_mediana_quantidade_par():
-    dados_par = [1, 2, 3, 4]
-    assert abs(minhastats.mediana(dados_par) - statistics.median(dados_par)) < TOLERANCIA
+def test_amplitude():
+    assert abs(minhastats.amplitude(DADOS) - numpy.ptp(DADOS)) < TOLERANCIA
+
+DADOS_MODA =[7,8,7,9,10,7,8]
+DADOS_Y = [1.0, 2.5, 4.0, 5.0, 6.5, 7.0, 4.5, 5.0, 4.8, 6.2]
 
 
+def test_moda():
+    assert minhastats.moda(DADOS_MODA) == statistics.mode(DADOS_MODA)
+
+    
 def test_variancia_amostral():
-    esperado = statistics.variance(DADOS)          # variancia amostral (n-1)
-    assert abs(minhastats.variancia(DADOS, amostral=True) - esperado) < TOLERANCIA
+    assert abs(minhastats.variancia(DADOS) - statistics.variance(DADOS)) < TOLERANCIA
 
 
 def test_variancia_populacional():
-    esperado = np.var(DADOS)                       # numpy usa n por padrao
-    assert abs(minhastats.variancia(DADOS, amostral=False) - esperado) < TOLERANCIA
+    assert abs(minhastats.variancia(DADOS, amostral=False) - statistics.pvariance(DADOS)) < TOLERANCIA
 
 
 def test_desvio_padrao_amostral():
-    esperado = statistics.stdev(DADOS)
-    assert abs(minhastats.desvio_padrao(DADOS, amostral=True) - esperado) < TOLERANCIA
+    assert abs(minhastats.desvio_padrao(DADOS) - statistics.stdev(DADOS)) < TOLERANCIA
+    
+
+def test_desvio_padrao_populacional():
+    assert abs(minhastats.desvio_padrao(DADOS, amostral=False) - statistics.pstdev(DADOS)) < TOLERANCIA
+
+
+# O STATISTICS E O NUMPY NAO TEM FUNCAO PRONTA DE COEFICIENTE DE VARIACAO.
+# POR ISSO A REFERENCIA E MONTADA COM STDEV E MEAN DAS PROPRIAS BIBLIOTECAS.
+
+    
+
+def test_coeficiente_variacao():
+    esperado = statistics.stdev(DADOS) / statistics.mean(DADOS) * 100
+    assert abs(minhastats.coeficiente_variacao(DADOS) - esperado) < TOLERANCIA
+
+
+
+def test_moda_quando_nao_e_o_primeiro():
+    assert minhastats.moda([1, 2, 2, 2]) == 2
+
+
+def test_quartis():
+    q1, q2, q3 = minhastats.quartis(DADOS)
+    esperados = numpy.percentile(DADOS, [25, 50, 75])
+    assert abs(q1 - esperados[0]) < TOLERANCIA
+    assert abs(q2 - esperados[1]) < TOLERANCIA
+    assert abs(q3 - esperados[2]) < TOLERANCIA
+
+
+def test_percentil():
+    assert abs(minhastats.percentil(DADOS, 90) - numpy.percentile(DADOS, 90)) <TOLERANCIA
+
+
+def test_covariancia_amostral():
+    esperado = numpy.cov(DADOS, DADOS_Y)[0][1] 
+    assert abs(minhastats.covariancia(DADOS, DADOS_Y) - esperado) < TOLERANCIA
+
+
+def test_covariancia_populacional():
+    esperado = numpy.cov(DADOS, DADOS_Y, ddof=0)[0][1]
+    assert abs(minhastats.covariancia(DADOS, DADOS_Y, amostral=False) - esperado) < TOLERANCIA
+
+
+def test_correlacao_pearson():
+    esperado = numpy.corrcoef(DADOS, DADOS_Y) [0][1]
+    assert abs(minhastats.correlacao_pearson(DADOS, DADOS_Y) - esperado) < TOLERANCIA
+
+
+    
