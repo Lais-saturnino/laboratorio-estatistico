@@ -86,3 +86,22 @@ def covariancia(x, y, amostral=True):
 def correlacao_pearson(x, y):
     return covariancia(x, y) / (desvio_padrao(x) * desvio_padrao(y))
 
+
+def iqr(dados):
+    q1, q2, q3 = quartis(dados)
+    return q3 - q1
+
+def limites_outliers(dados):
+    q1, q2, q3 = quartis(dados)
+    distancia = 1.5 * iqr(dados)
+    return q1 - distancia, q3 + distancia
+
+def detectar_outliers(dados):
+    inferior, superior = limites_outliers(dados)
+    fora = []
+    for valor in dados:
+        if valor < inferior or valor > superior:
+            fora.append(valor)
+            
+    return fora
+

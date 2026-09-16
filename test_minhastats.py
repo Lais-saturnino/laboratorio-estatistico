@@ -80,5 +80,30 @@ def test_correlacao_pearson():
     esperado = numpy.corrcoef(DADOS, DADOS_Y) [0][1]
     assert abs(minhastats.correlacao_pearson(DADOS, DADOS_Y) - esperado) < TOLERANCIA
 
+# O numpy nao tem funcao pronta de IQR nem de limites de outlier.
+# Por isso a referencia e montada com numpy.percentile, que e independente
+# do meu percentil: continua sendo uma conferencia de fora.
 
+
+def test_iqr():
+    q1 = numpy.percentile(DADOS, 25)
+    q3 = numpy.percentile(DADOS, 75)
+    assert abs(minhastats.iqr(DADOS) - (q3 - q1)) < TOLERANCIA
+
+
+def test_limites_outliers():
+    q1 = numpy.percentile(DADOS, 25)
+    q3 = numpy.percentile(DADOS, 75)
+    intervalo = q3 - q1
+    inferior, superior = minhastats.limites_outliers(DADOS)
+    assert abs(inferior - (q1 - 1.5 * intervalo)) < TOLERANCIA
+    assert abs(superior - (q3 + 1.5 * intervalo)) < TOLERANCIA
+    
+
+def test_detectar_outliers():
+    assert minhastats.detectar_outliers(DADOS) == [2.0, 3.0]
+    
+
+def test_detectar_outliers_sem_nenhum():
+    assert minhastats.detectar_outliers([10, 11, 12, 13, 14]) == []
     
