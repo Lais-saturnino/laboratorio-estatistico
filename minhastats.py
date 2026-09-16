@@ -69,21 +69,6 @@ def percentil(dados, p):
 def quartis(dados):
     return percentil(dados, 25), percentil(dados, 50), percentil(dados, 75)
 
-def percentil(dados, p):
-    ordenados = sorted(dados)
-    n = len(ordenados)
-    posicao = (n - 1) * p / 100
-    inferior = int(posicao)
-    resto = posicao - inferior
-
-    if inferior + 1 < n:
-        return ordenados[inferior] + resto * (ordenados[inferior + 1] - ordenados[inferior])
-    else:
-        return ordenados[inferior]
-
-
-def quartis(dados):
-    return percentil(dados, 25), percentil(dados, 50), percentil(dados, 75)
 
 def covariancia(x, y, amostral=True):
     mx = media(x)
@@ -100,3 +85,4 @@ def covariancia(x, y, amostral=True):
 
 def correlacao_pearson(x, y):
     return covariancia(x, y) / (desvio_padrao(x) * desvio_padrao(y))
+
