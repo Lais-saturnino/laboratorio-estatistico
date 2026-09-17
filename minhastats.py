@@ -105,3 +105,36 @@ def detectar_outliers(dados):
             
     return fora
 
+
+def tabela_frequencia(dados, n_classes=5):
+    minimo = min(dados)
+    maximo = max(dados)
+    largura = (maximo - minimo) / n_classes
+    total = len(dados)
+
+    tabela = []
+    acumulada = 0
+
+
+    for i in range(n_classes):
+        inicio = minimo + i * largura
+        fim = inicio + largura
+
+        contagem = 0
+        for valor in dados:
+            if valor >= inicio and valor < fim:
+                contagem = contagem + 1
+            elif i == n_classes - 1 and valor == maximo:
+                    contagem = contagem + 1
+
+        acumulada = acumulada + contagem
+
+        tabela.append({
+            "inicio": inicio,
+            "fim": fim,
+            "frequencia": contagem,
+            "relativa": contagem / total * 100,
+            "acumulada": acumulada,
+          })
+    
+    return tabela

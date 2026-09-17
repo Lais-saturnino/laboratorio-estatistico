@@ -106,4 +106,24 @@ def test_detectar_outliers():
 
 def test_detectar_outliers_sem_nenhum():
     assert minhastats.detectar_outliers([10, 11, 12, 13, 14]) == []
+
+
+def test_tabela_frequencia_bate_com_numpy():
+    contagens, limites = numpy.histogram(DADOS, bins=5)
+    minha = minhastats.tabela_frequencia(DADOS, 5)
+    for i in range(5):
+        assert minha[i]["frequencia"] == contagens[i]
+        assert abs(minha[i]["inicio"] - limites[i]) < TOLERANCIA
+
+
+def test_tabela_frequencia_soma_o_total():
+    soma = 0
+    for linha in minhastats.tabela_frequencia(DADOS):
+        soma = soma + linha["frequencia"]
+    assert soma == len(DADOS)
+
+
+def test_tabela_frequencia_acumulada_final():
+    tabela = minhastats.tabela_frequencia(DADOS)
+    assert tabela[-1]["acumulada"] == len(DADOS)
     
