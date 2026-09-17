@@ -73,3 +73,32 @@ elif media_valor <mediana_valor:
     st.info(f"A média ({media_valor:.2f}) é menor que a mediana ({mediana_valor:.2f}): a distribuição de {coluna} é assimétrica à esquerda.")
 else:
     st.info(f"Média e mediana de {coluna} são iguais: distribuição simétrica.")
+
+
+
+st.subheader("Regressão linear")
+
+var_x = st.selectbox("Variável X:", ["age", "bmi", "children"], key="x")
+var_y = st.selectbox("Variável Y:", ["charges"], key="y")
+
+x = dados[var_x].tolist()
+y = dados[var_y].tolist()
+
+inclinacao, intercepto = minhastats.regressao_linear(x, y)
+r2 = minhastats.r_quadrado(x, y)
+
+fig4, eixo4 = plt.subplots()
+eixo4.scatter(x, y, alpha=0.4, color="orange")
+
+reta_x = [min(x), max(x)]
+reta_y = [inclinacao * v + intercepto for v in reta_x]
+eixo4.plot(reta_x, reta_y, color="steelblue")
+
+eixo4.set_xlabel(var_x)
+eixo4.set_ylabel(var_y)
+st.pyplot(fig4)
+
+st.write(f"R² = {r2:.3f}")
+st.warning("Correlação não implica causalidade: a reta mostra uma relação estatística, não uma relação de causa e efeito.")
+
+
