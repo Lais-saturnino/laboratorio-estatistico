@@ -126,4 +126,17 @@ def test_tabela_frequencia_soma_o_total():
 def test_tabela_frequencia_acumulada_final():
     tabela = minhastats.tabela_frequencia(DADOS)
     assert tabela[-1]["acumulada"] == len(DADOS)
-    
+
+
+def test_regressao_linear():
+    x = [1, 2, 3, 4]
+    y = [2, 4, 6, 8]
+    inclinacao, intercepto = minhastats.regressao_linear(x, y)
+    assert abs(inclinacao - 2.0) < TOLERANCIA
+    assert abs(intercepto - 0.0) < TOLERANCIA
+
+
+def test_r_quadrado():
+    x = [1, 2, 3, 4]
+    y = [2, 4, 6, 8]
+    assert abs(minhastats.r_quadrado(x, y) - 1.0) < TOLERANCIA

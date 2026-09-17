@@ -138,3 +138,13 @@ def tabela_frequencia(dados, n_classes=5):
           })
     
     return tabela
+
+def regressao_linear(x, y):
+    inclinacao = covariancia(x, y) / variancia(x)
+    intercepto = media(y) - inclinacao * media(x)
+    return inclinacao, intercepto
+
+
+def r_quadrado(x, y):
+    r = correlacao_pearson(x, y)
+    return r ** 2
