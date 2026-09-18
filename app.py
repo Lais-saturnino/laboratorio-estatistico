@@ -113,7 +113,7 @@ frequencias = minhastats.simular_moeda(n_jogadas)
 fig5, eixo5 = plt.subplots()
 eixo5.plot(frequencias, color="steelblue")
 eixo5.axhline(0.5, color="red", linestyle="--")
-eixo.set_xlabel("Número de jogadas")
+eixo5.set_xlabel("Número de jogadas")
 eixo5.set_ylabel("Frequência de 'cara'")
 st.pyplot(fig5)
 
