@@ -104,6 +104,15 @@ st.pyplot(fig4)
 
 st.write(f"R² = {r2:.3f}")
 st.warning("Correlação não implica causalidade: a reta mostra uma relação estatística, não uma relaçãode causa e efeito.")
+st.subheader("Predição interativa")
+
+media_x = minhastats.media(x)
+
+valor_x = st.number_input(f"Digite um valor de {var_x} para prever {var_y}:", value=media_x)
+
+valor_previsto = inclinacao * valor_x + intercepto
+
+st.write(f"Previsão de {var_y}: {valor_previsto:.2f}")
 st.subheader("Módulo 3 - Lei dos Grandes Números")
 
 n_jogadas = st.slider("Número de jogadas:", 10, 5000, 100)
