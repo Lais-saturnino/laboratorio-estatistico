@@ -1,10 +1,16 @@
 # Laboratório Estatístico Interativo 🔬
 
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-app-red)
+![Testes](https://img.shields.io/badge/testes-24%20passed-brightgreen)
+
 Sistematização da disciplina Matemática e Estatística para Computação (Turma B, Prof. Romes Heriberto) - CEUB.
 
 **Autora:** Lais dos Santos Silva Saturnino 
 
-<img width="256" height="256" alt="image" src="https://github.com/user-attachments/assets/cca2eb4d-95f0-48d3-b6f2-27d5720cc8f2" />
+
+<img width="756" height="566" alt="grafico_regressao" src="https://github.com/user-attachments/assets/13c7e6e6-a559-4e33-abef-64b81d592445" />
+
 
 ## O que é:
 
