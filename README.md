@@ -8,6 +8,8 @@ Sistematização da disciplina Matemática e Estatística para Computação (Tur
 
 **Autora:** Lais dos Santos Silva Saturnino 
 
+**Matrícula:** (72650112)
+
 
 <img width="756" height="566" alt="grafico_regressao" src="https://github.com/user-attachments/assets/13c7e6e6-a559-4e33-abef-64b81d592445" />
 
