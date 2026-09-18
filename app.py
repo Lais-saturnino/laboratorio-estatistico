@@ -91,7 +91,9 @@ fig4, eixo4 = plt.subplots()
 eixo4.scatter(x, y, alpha=0.4, color="orange")
 
 reta_x = [min(x), max(x)]
-reta_y = [inclinacao * v + intercepto for v in reta_x]
+reta_y = []
+for v in reta_x:
+reta_y.append(inclinacao * v + intercepto)
 eixo4.plot(reta_x, reta_y, color="steelblue")
 
 eixo4.set_xlabel(var_x)
