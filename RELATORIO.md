@@ -45,7 +45,9 @@ Relacionando `bmi` (índice de massa corporal) com `charges`, o R² deu 0,039 �
 No total, 24 testes, todos passando. Não são só os casos "fáceis" — tem também casos de borda, como uma lista sem nenhum outlier e uma lista onde a moda não é o primeiro valor. Esses testes existem porque um teste com dado fácil pode passar mesmo com o código errado, como aconteceu com a `moda`.
 
 
+
 ## 5. Conclusão
 
+O maior desafio deste trabalho foi dar início ao desenvolvimento do código e colocar em prática a matemática em Python. Fui escrevendo cada função com calma, testando uma de cada vez, e usei livros de referência, aulas  para entender a lógica por trás de cada linha antes de digitar.
 
-A parte que mais me ensinou foi o erro da moda: aprendi que teste passando não significa código certo — só significa que aquele caso específico está certo. E o resultado do BMI mostrou na prática por que a gente não pode confundir duas coisas andarem juntas com uma ser causa da outra.
+A parte que mais me ensinou foi o erro da moda. Entendi que teste passando não significa que o código está certo, só significa que aquele caso em específico está certo.
