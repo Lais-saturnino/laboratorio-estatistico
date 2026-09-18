@@ -103,7 +103,7 @@ eixo4.set_ylabel(var_y)
 st.pyplot(fig4)
 
 st.write(f"R² = {r2:.3f}")
-st.warning("Correlação não implica causalidade: a reta mostra uma relação estatística, não uma relaçãode causa e efeito.")
+st.warning("Correlação não implica causalidade: a reta mostra uma relação estatística, não uma relação de causa e efeito.")
 st.subheader("Predição interativa")
 
 media_x = minhastats.media(x)
