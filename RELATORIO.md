@@ -1,10 +1,17 @@
 # Relatório da Sistematização — Laboratório Estatístico Interativo
 
+
 **Aluna:** Lais dos Santos Silva Saturnino
+
+
 **Disciplina:** Matemática e Estatística para Computação (Turma B) — Prof. Romes Heriberto
+
+
 **Dataset:** Medical Cost Personal (Kaggle), 1.338 registros
 
+
 ## 1. Módulo 1 — Biblioteca estatística
+
 
 Escrevi 11 funções no arquivo `minhastats.py`: média, mediana, amplitude, moda, variância (amostral e populacional), desvio padrão, coeficiente de variação, percentil, quartis, covariância e correlação de Pearson. Nenhuma delas usa função pronta de estatística (nada de `numpy.mean()` ou `statistics.stdev()`) — todas foram calculadas com laço de repetição e as fórmulas na mão.
 
@@ -17,7 +24,9 @@ Para conferir se as contas estavam certas, escrevi 24 testes automatizados (`tes
 
 **Um bug que encontrei:** a função `moda` tinha um erro de indentação — o `return` estava dentro do `else`, então ela devolvia a resposta assim que via o primeiro valor repetido, sem terminar de contar. O teste que eu tinha passava mesmo assim, porque a lista usada começava justamente pelo valor certo — foi coincidência. Só descobri o erro testando `moda([1, 2, 2, 2])`, que devolvia `1` em vez de `2`. Corrigi e criei um teste novo (`test_moda_quando_nao_e_o_primeiro`) para esse caso não voltar a passar despercebido.
 
+
 ## 2. Módulo 2 — Análise exploratória
+
 
 Criei as funções `iqr`, `limites_outliers`, `detectar_outliers` e `tabela_frequencia`, todas usando as funções do Módulo 1 por baixo. Os outliers são definidos pela regra clássica: qualquer valor abaixo de `Q1 − 1,5×IQR` ou acima de `Q3 + 1,5×IQR`.
 
@@ -29,10 +38,14 @@ Criei as funções `regressao_linear` (calcula a inclinação e o ponto onde a r
 
 Relacionando `bmi` (índice de massa corporal) com `charges`, o R² deu 0,039 — ou seja, o BMI sozinho explica menos de 4% da  da variação no custo do plano. A tela mostra um aviso: correlação não é a mesma coisa que causa e efeito. A reta mostra que as duas variáveis andam um pouco juntas, mas não prova que uma seja a causa da outra.
 
+
 ## 4. Testes
+
 
 No total, 24 testes, todos passando. Não são só os casos "fáceis" — tem também casos de borda, como uma lista sem nenhum outlier e uma lista onde a moda não é o primeiro valor. Esses testes existem porque um teste com dado fácil pode passar mesmo com o código errado, como aconteceu com a `moda`.
 
+
 ## 5. Conclusão
+
 
 A parte que mais me ensinou foi o erro da moda: aprendi que teste passando não significa código certo — só significa que aquele caso específico está certo. E o resultado do BMI mostrou na prática por que a gente não pode confundir duas coisas andarem juntas com uma ser causa da outra.
