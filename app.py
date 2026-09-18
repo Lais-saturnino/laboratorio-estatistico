@@ -93,7 +93,9 @@ eixo4.scatter(x, y, alpha=0.4, color="orange")
 reta_x = [min(x), max(x)]
 reta_y = []
 for v in reta_x:
-reta_y.append(inclinacao * v + intercepto)
+    reta_y.append(inclinacao * v + intercepto)
+
+
 eixo4.plot(reta_x, reta_y, color="steelblue")
 
 eixo4.set_xlabel(var_x)
@@ -101,6 +103,19 @@ eixo4.set_ylabel(var_y)
 st.pyplot(fig4)
 
 st.write(f"R² = {r2:.3f}")
-st.warning("Correlação não implica causalidade: a reta mostra uma relação estatística, não uma relação de causa e efeito.")
+st.warning("Correlação não implica causalidade: a reta mostra uma relação estatística, não uma relaçãode causa e efeito.")
+st.subheader("Módulo 3 - Lei dos Grandes Números")
 
+n_jogadas = st.slider("Número de jogadas:", 10, 5000, 100)
+
+frequencias = minhastats.simular_moeda(n_jogadas)
+
+fig5, eixo5 = plt.subplots()
+eixo5.plot(frequencias, color="steelblue")
+eixo5.axhline(0.5, color="red", linestyle="--")
+eixo.set_xlabel("Número de jogadas")
+eixo5.set_ylabel("Frequência de 'cara'")
+st.pyplot(fig5)
+
+st.write(f"Depois de {n_jogadas} jogadas, a frequência de cara foi {frequencias[-1]:.3f}")
 

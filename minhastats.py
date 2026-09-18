@@ -1,3 +1,6 @@
+
+import random
+
 def media(dados):
     soma = 0
     for valor in dados:
@@ -148,3 +151,12 @@ def regressao_linear(x, y):
 def r_quadrado(x, y):
     r = correlacao_pearson(x, y)
     return r ** 2
+
+def simular_moeda(n):
+    caras = 0
+    frequencias = []
+    for i in range(n):
+        if random.random() < 0.5:
+            caras = caras + 1
+        frequencias.append(caras / (i + 1))
+    return frequencias
