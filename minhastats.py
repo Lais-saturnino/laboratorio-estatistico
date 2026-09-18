@@ -1,6 +1,9 @@
 
 import random
 
+import math
+
+
 def media(dados):
     soma = 0
     for valor in dados:
@@ -160,3 +163,20 @@ def simular_moeda(n):
             caras = caras + 1
         frequencias.append(caras / (i + 1))
     return frequencias
+
+
+def simular_tcl(dados, tamanho_amostra, n_amostras):
+    medias = []
+    for i in range(n_amostras):
+        amostra = random.choices(dados, k=tamanho_amostra)
+        medias.append(media(amostra))
+    return medias
+
+def normal_pdf(x, media_dados, desvio):
+    parte1 = 1 / (desvio * math.sqrt(2 * math.pi))
+    parte2 = math.exp(-0.5 * (( x - media_dados) / desvio) **2)
+    return parte1 * parte2
+
+def exponencial_pdf(x, taxa):
+    return taxa * math.exp(-taxa * x)
+

@@ -118,4 +118,71 @@ eixo5.set_ylabel("Frequência de 'cara'")
 st.pyplot(fig5)
 
 st.write(f"Depois de {n_jogadas} jogadas, a frequência de cara foi {frequencias[-1]:.3f}")
+st.subheader("Módulo 3 - Teorema Central do Limite")
 
+variavel_tcl = st.selectbox("Escolha uma variável:", ["age", "bmi", "children", "charges"], key="tcl")
+
+valores_tcl = dados[variavel_tcl].tolist()
+
+tamanho_amostra = st.slider("Tamanho de cada amostra:", 5, 200, 30)
+n_amostras = st.slider("Número de amostras:", 100, 2000, 500)
+
+medias_amostrais = minhastats.simular_tcl(valores_tcl, tamanho_amostra, n_amostras)
+
+fig6, eixo6 = plt.subplots()
+eixo6.hist(medias_amostrais, bins=30, color="steelblue", edgecolor="white")
+eixo6.set_xlabel(f"Média da amostra de {variavel_tcl}")
+eixo6.set_ylabel("Frequência")
+st.pyplot(fig6)
+
+st.write(f"Média das {n_amostras} médias amostrais: {minhastats.media(medias_amostrais):.2f}")
+st.subheader("Módulo 4 - Distribuições Teóricas")
+
+st.write("Ajuste da curva Normal na variável bmi")
+
+valores_bmi = dados["bmi"].tolist()
+media_bmi = minhastats.media(valores_bmi)
+desvio_bmi = minhastats.desvio_padrao(valores_bmi)
+
+minimo_bmi = min(valores_bmi)
+maximo_bmi = max(valores_bmi)
+passo = (maximo_bmi - minimo_bmi) / 100
+
+eixo_x = []
+eixo_y = []
+for i in range(100):
+    x = minimo_bmi + i * passo
+    eixo_x.append(x)
+    eixo_y.append(minhastats.normal_pdf(x, media_bmi, desvio_bmi))
+
+
+fig7, eixo7 = plt.subplots()
+eixo7.hist(valores_bmi, bins=30, color="steelblue", edgecolor="white", density=True)
+eixo7.plot(eixo_x, eixo_y, color="red")
+eixo7.set_xlabel("bmi")
+eixo7.set_ylabel("Densidade")
+st.pyplot(fig7)
+
+st.write("Ajuste da curva Exponencial na variável charges")
+
+valores_charges = dados["charges"].tolist()
+media_charges = minhastats.media(valores_charges)
+taxa_charges = 1 / media_charges
+
+minimo_charges = min(valores_charges)
+maximo_charges = max(valores_charges)
+passo_charges = (maximo_charges - minimo_charges) / 100
+
+eixo_x2 = []
+eixo_y2 = []
+for i in range(100):
+    x = minimo_charges + i * passo_charges
+    eixo_x2.append(x)
+    eixo_y2.append(minhastats.exponencial_pdf(x, taxa_charges))
+
+fig8, eixo8 = plt.subplots()
+eixo8.hist(valores_charges, bins=30, color="steelblue", edgecolor="white", density=True)
+eixo8.plot(eixo_x2, eixo_y2, color="red")
+eixo8.set_xlabel("charges")
+eixo8.set_ylabel("Densidade")
+st.pyplot(fig8)
