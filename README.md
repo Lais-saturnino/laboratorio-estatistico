@@ -20,7 +20,7 @@ Uma biblioteca de estatística escrita do zero em Python, sem usar funções pro
 
 ## Estrutura 
 
-- `minhastats.py` — a biblioteca estatística, com 17 funções escritas à mão
+- `minhastats.py` — a biblioteca estatística, com 21 funções escritas à mão
 - `test_minhastats.py` — 24 testes automatizados, validando cada função contra NumPy/statistics
 - `app.py` — a tela interativa (Streamlit)
 - `insurance.csv` — o dataset usado
