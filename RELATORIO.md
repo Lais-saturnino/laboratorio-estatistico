@@ -32,22 +32,40 @@ Criei as funções `iqr`, `limites_outliers`, `detectar_outliers` e `tabela_freq
 
 Na tela do programa, olhando a coluna `charges` (custo do plano), a média deu 13.270,42 e a mediana deu 9.382,03 — a média bem mais alta mostra que a distribuição é puxada por valores altos. O programa encontrou 139 outliers nessa coluna, o que faz sentido: provavelmente é o grupo de pessoas fumantes, que pagam bem mais caro que a maioria.
 
-## 3. Módulo 5 — Regressão linear
+
+## 3. Módulo 3 — Probabilidade e simulação
+
+Foram feitas duas simulações do zero, sem usar bibliotecas prontas de probabilidade.
+
+A primeira simula a Lei dos Grandes Números: uma moeda é "jogada" várias vezes (usando números aleatórios), e a cada jogada é calculada a frequência de "cara" até aquele ponto. O gráfico mostra essa frequência se aproximando de 50% conforme o número de jogadas aumenta.
+
+A segunda simula o Teorema Central do Limite: são tiradas várias amostras aleatórias dos dados, calculando a média de cada amostra. Mesmo os dados originais não tendo formato de sino, as médias das amostras acabam formando esse formato — confirmando o teorema na prática.
+
+## 4. Módulo 4 — Distribuições teóricas
+
+Foram implementadas as fórmulas das distribuições Normal e Exponencial, para comparar com os dados reais.
+
+A curva Normal foi ajustada à variável `bmi` (IMC), usando a média e o desvio padrão dos próprios dados. A curva Exponencial foi ajustada à variável `charges` (despesas), usando a taxa (1/média). Nos dois casos, o histograma dos dados reais foi desenhado junto com a curva teórica, mostrando que os dados se aproximam do formato esperado, mas não são perfeitos — o que também é um resultado válido.
+
+
+
+## 5. Módulo 5 — Regressão linear
 
 Criei as funções `regressao_linear` (calcula a inclinação e o ponto onde a reta corta o eixo) e `r_quadrado` (mede o quanto a reta explica os dados).
 
-Relacionando `bmi` (índice de massa corporal) com `charges`, o R² deu 0,039 — ou seja, o BMI sozinho explica menos de 4% da  da variação no custo do plano. A tela mostra um aviso: correlação não é a mesma coisa que causa e efeito. A reta mostra que as duas variáveis andam um pouco juntas, mas não prova que uma seja a causa da outra.
+Relacionando `bmi` (índice de massa corporal) com `charges`, o R² deu 0,039 — ou seja, o BMI sozinho explica menos de 4%  da variação no custo do plano. A tela mostra um aviso: correlação não é a mesma coisa que causa e efeito. A reta mostra que as duas variáveis andam um pouco juntas, mas não prova que uma seja a causa da outra
 
 
-## 4. Testes
+## 6. Testes
 
 
 No total, 24 testes, todos passando. Não são só os casos "fáceis" — tem também casos de borda, como uma lista sem nenhum outlier e uma lista onde a moda não é o primeiro valor. Esses testes existem porque um teste com dado fácil pode passar mesmo com o código errado, como aconteceu com a `moda`.
 
 
 
-## 5. Conclusão
+## 7. Conclusão
 
 O maior desafio deste trabalho foi dar início ao desenvolvimento do código e colocar em prática a matemática em Python. Fui escrevendo cada função com calma, testando uma de cada vez, e usei livros de referência, aulas  para entender a lógica por trás de cada linha antes de digitar.
 
 A parte que mais me ensinou foi o erro da moda. Entendi que teste passando não significa que o código está certo, só significa que aquele caso em específico está certo.
+
