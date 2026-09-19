@@ -110,8 +110,12 @@ media_x = minhastats.media(x)
 
 valor_x = st.number_input(f"Digite um valor de {var_x} para prever {var_y}:", value=media_x)
 
-valor_previsto = inclinacao * valor_x + intercepto
+minimo_x = min(x)
+maximo_x = max(x)
+if valor_x < minimo_x or valor_x > maximo_x:
+    st.warning(f"Atenção: esse valor está fora da faixa observada nos dados ({minimo_x:.2f} a {maximo_x:.2f}). A previsão pode não ser confiável.")
 
+valor_previsto = inclinacao * valor_x + intercepto
 st.write(f"Previsão de {var_y}: {valor_previsto:.2f}")
 st.subheader("Módulo 3 - Lei dos Grandes Números")
 
